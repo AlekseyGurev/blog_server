@@ -1,0 +1,31 @@
+import {
+	logout,
+	authorize,
+	register,
+	fetchRoles,
+	fetchUsers,
+	updateUserRole,
+	delUser,
+	fetchPost,
+	addComment,
+	delComment,
+	editPost,
+	delPost,
+	fetchPosts,
+} from './operations';
+
+export const server = {
+	logout,
+	authorize,
+	register,
+	fetchRoles,
+	fetchUsers,
+	updateUserRole,
+	delUser,
+	fetchPost,
+	addComment,
+	delComment,
+	editPost,
+	delPost,
+	fetchPosts,
+};
