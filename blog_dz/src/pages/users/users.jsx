@@ -15,7 +15,7 @@ const UsersContainer = ({ className }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    Promise.all([request('/users'), request('/users/roles')]).then(
+    Promise.all([request('/api/users'), request('/api/users/roles')]).then(
       ([usersRes, rolesRes]) => {
         setIsLoading(true);
         if (usersRes.error || rolesRes.error) {
@@ -30,7 +30,7 @@ const UsersContainer = ({ className }) => {
   }, [requestServer, isDeleteUser]);
 
   const onDeleteUser = (userId) => {
-    request(`/users/${userId}`, 'DELETE').then(() => {
+    request(`/api/users/${userId}`, 'DELETE').then(() => {
       setIsDeleteUser(!isDeleteUser);
     });
   };

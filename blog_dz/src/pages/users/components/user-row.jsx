@@ -13,9 +13,11 @@ const UserRowContainer = ({ className, user, roles, onDeleteUser }) => {
   const isSaveButtonDisabled = selectedRoleId === initialRoleId;
 
   const onRoleSave = (userId, newUserRoleId) => {
-    request(`/users/${userId}`, 'PATCH', { roleId: newUserRoleId }).then(() => {
-      setInitialRoleId(newUserRoleId);
-    });
+    request(`/api/users/${userId}`, 'PATCH', { roleId: newUserRoleId }).then(
+      () => {
+        setInitialRoleId(newUserRoleId);
+      }
+    );
   };
 
   return (

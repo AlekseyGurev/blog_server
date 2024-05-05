@@ -1,4 +1,6 @@
 require('dotenv').config();
+const path = require('path');
+const baseUrl = process.env.MONGODB_CONNECTION_STRING;
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -9,7 +11,9 @@ const routes = require('./routes');
 const port = 3001;
 const app = express();
 
-app.use(express.static('../blog_dz/dist'));
+app.use('/', express.static('./blog_dz/dist/'));
+// app.use('/posts', express.static('../blog_dz/dist/index.html'));
+// app.use('/post/:id', express.static('../blog_dz/dist/index.html'));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -123,9 +127,12 @@ app.use(express.json());
 //   res.send({ error: null });
 // });
 
-app.use('/', routes);
+app.use('/api', routes);
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('./blog_dz/dist/index.html'));
+});
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING).then(() => {
+mongoose.connect(baseUrl).then(() => {
   app.listen(port, () => {
     console.log(`server started on port ${port}`);
   });

@@ -44,6 +44,7 @@ function Blog() {
       <Page>
         <Routes>
           <Route path="/" element={<Posts />} />
+          <Route path="/posts" element={<Posts />} />
           <Route path="/login" element={<Authorization />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/users" element={<Users />} />

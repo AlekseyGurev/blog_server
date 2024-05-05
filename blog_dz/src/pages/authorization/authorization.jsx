@@ -50,15 +50,17 @@ const AuthorizationContainer = ({ className }) => {
   useResetForm(reset);
 
   const onSubmit = ({ login, password }) => {
-    request('/login', 'POST', { login, password }).then(({ error, user }) => {
-      if (error) {
-        setErrorServer(`Ошибка запроса 	${error}`);
-        return;
-      }
+    request('/api/login', 'POST', { login, password }).then(
+      ({ error, user }) => {
+        if (error) {
+          setErrorServer(`Ошибка запроса 	${error}`);
+          return;
+        }
 
-      dispatch(setUser(user));
-      sessionStorage.setItem('userData', JSON.stringify(user));
-    });
+        dispatch(setUser(user));
+        sessionStorage.setItem('userData', JSON.stringify(user));
+      }
+    );
   };
   const formError = errors?.login?.message || errors?.password?.message;
   const errorMessage = formError || errorServer;
