@@ -11,7 +11,7 @@ const routes = require('./routes');
 const port = 3001;
 const app = express();
 
-app.use('/', express.static('./blog_dz/dist/'));
+app.use('/', express.static('../blog_dz/dist'));
 // app.use('/posts', express.static('../blog_dz/dist/index.html'));
 // app.use('/post/:id', express.static('../blog_dz/dist/index.html'));
 
@@ -129,7 +129,7 @@ app.use(express.json());
 
 app.use('/api', routes);
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve('./blog_dz/dist/index.html'));
+  res.sendFile(path.resolve('../blog_dz/dist'));
 });
 
 mongoose.connect(baseUrl).then(() => {

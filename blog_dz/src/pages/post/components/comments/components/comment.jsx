@@ -38,7 +38,10 @@ const CommentContainer = ({ className, comment, postId }) => {
           </span>
           <span className="add-at">
             <Icon id="fa-calendar-o" size="22px" margin="0 0 0 0" />
-            {publishedAt}
+            {new Date(publishedAt)
+              .toISOString()
+              .substring(0, 16)
+              .replace('T', ' ')}
           </span>
         </div>
         <p>{content}</p>

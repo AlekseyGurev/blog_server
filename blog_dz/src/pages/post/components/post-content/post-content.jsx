@@ -14,14 +14,23 @@ const PostContentContainer = ({ className, post, onDeletePost }) => {
   return (
     <div className={className}>
       <div className="image-container">
-        <img src={imageUrl} alt="картинка" width={400} height={220} />
+        <img
+          className="image"
+          src={imageUrl}
+          alt="картинка"
+          width={400}
+          height={220}
+        />
       </div>
       <div className="content-container">
         <H2>{title}</H2>
         <div className="controls-container">
           <div className="icon-container">
             <Icon id="fa-calendar-o" size="24px" margin="0 0 0 0" />
-            {publishedAt}
+            {new Date(publishedAt)
+              .toISOString()
+              .substring(0, 16)
+              .replace('T', ' ')}
           </div>
 
           {userRoleAccess(userRole) && (
@@ -58,6 +67,11 @@ export const PostContent = styled(PostContentContainer)`
   .image-container {
     float: left;
     margin-right: 30px;
+  }
+
+  .image {
+    object-fit: cover;
+    border-radius: 5px;
   }
   .controls-container {
     display: flex;

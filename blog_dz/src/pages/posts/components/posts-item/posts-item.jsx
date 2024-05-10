@@ -7,12 +7,17 @@ const PostsItemContainer = ({ className, post }) => {
   return (
     <li className={className}>
       <Link to={`/post/${post._id}`}>
-        <img src={post.imageUrl} />
+        <div className="container__image">
+          <img src={post.imageUrl} />
+        </div>
         <h3 className="title">{post.title}</h3>
         <div className="description">
           <span className="description__container">
             <Icon id="fa-calendar-o" size="20px" margin="0 0 0 0" />
-            {post.publishedAt}
+            {new Date(post.publishedAt)
+              .toISOString()
+              .substring(0, 16)
+              .replace('T', ' ')}
           </span>
           <span className="description__container">
             <Icon id="fa-comment-o" size="20px" margin="0 0 0 0" />
@@ -25,11 +30,13 @@ const PostsItemContainer = ({ className, post }) => {
 };
 
 export const PostsItem = styled(PostsItemContainer)`
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   border: 1px solid #000000;
-
+  border-radius: 4px;
   .title {
+    width: 200px;
     margin: 0;
     padding: 10px 10px 0 10px;
     font-size: 20px;
@@ -47,9 +54,17 @@ export const PostsItem = styled(PostsItemContainer)`
     gap: 5px;
   }
 
+  .container__image {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
   img {
     width: 200px;
     height: 200px;
+    object-fit: contain;
   }
 `;
 

@@ -56,6 +56,8 @@ export const Posts = styled(PostsContainer)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
 
   .items__list {
     display: flex;
